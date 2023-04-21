@@ -3,17 +3,17 @@ export const { getCssText, globalCss, styled, css } = createStitches({
   theme: {
     colors: {
       primary_0: '#fffffe',
-      primary_50: '#f6f6f7',
-      primary_100: '#e2e3e5',
-      primary_200: '#c4c6cb',
-      primary_300: '#9fa1a9',
-      primary_400: '#7b7c86',
-      primary_500: '#60626c',
-      primary_600: '#4c4d55',
-      primary_700: '#3f3f46',
-      primary_800: '#35353a',
-      primary_900: '#2e2f33',
-      primary_950: '#18181b',
+      primary_50: '#f9fafb',
+      primary_100: '#f3f4f6',
+      primary_200: '#e5e7eb',
+      primary_300: '#d1d5db',
+      primary_400: '#9ca3af',
+      primary_500: '#6b7280',
+      primary_600: '#4b5563',
+      primary_700: '#374151',
+      primary_800: '#1f2937',
+      primary_900: '#111827',
+      primary_950: '#030712',
     },
     fontSizes: {
       1: '10px',
@@ -33,6 +33,9 @@ export const { getCssText, globalCss, styled, css } = createStitches({
       5: '20px',
       6: '24px',
     },
+    fonts: {
+      inter: 'Inter, sans-serif',
+    },
   },
   media: {
     bp1: '(min-width: 640px)',
@@ -49,6 +52,9 @@ export const globals = globalCss({
     padding: 0,
   },
   '*': {
+    fontSize: '$3',
+    fontWeight: 400,
+    fontFamily: '$inter',
     boxSizing: 'border-box',
   },
 })
