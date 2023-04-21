@@ -6,6 +6,7 @@ export const InputContainer = styled('div', {
   gridTemplateRows: 'auto auto',
 
   '& label': {
+    fontSize: '$3',
     fontWeight: '500',
     color: '$primary_500',
     textTransform: 'capitalize',
