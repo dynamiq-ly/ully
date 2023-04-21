@@ -4,6 +4,7 @@ import { HiOutlinePencilAlt } from 'react-icons/hi'
 import { StitcheWrapper } from '@/styles/wrapper.stitche'
 
 import Input from '@/components/input/Input.module'
+import Button from '@/components/button/Button.module'
 
 export default function Home() {
   return (
@@ -16,7 +17,8 @@ export default function Home() {
       </Head>
 
       <StitcheWrapper>
-        <Input label='label' icon={<HiOutlinePencilAlt />} />
+        {/* <Button title='wala' /> */}
+        <Input label='test' />
       </StitcheWrapper>
     </>
   )

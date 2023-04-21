@@ -3,6 +3,7 @@ import { styled } from '@/config/stitches.config'
 export const InputContainer = styled('div', {
   gap: '6px',
   display: 'grid',
+  minWidth: '300px',
   gridTemplateRows: 'auto auto',
 
   '& label': {
@@ -18,8 +19,8 @@ export const InputField = styled('div', {
   height: '42px',
   display: 'flex',
   maxHeight: '42px',
-  alignItems: 'center',
   overflow: 'hidden',
+  alignItems: 'center',
   background: '$primary_0',
   border: '2.4px solid $primary_200',
   borderRadius: 'calc(1rem - 8px)',
@@ -83,6 +84,7 @@ export const InputStyled = styled('input', {
   outline: 'none',
   padding: '0 $2',
   fontWeight: '500',
+  background: '$primary_0',
 
   '&:placeholder': {
     color: '$primary_200',
