@@ -1,5 +1,10 @@
 import Head from 'next/head'
 
+import { HiOutlinePencilAlt } from 'react-icons/hi'
+import { StitcheWrapper } from '@/styles/wrapper.stitche'
+
+import Input from '@/components/input/Input.module'
+
 export default function Home() {
   return (
     <>
@@ -9,6 +14,10 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      <StitcheWrapper>
+        <Input label='label' icon={<HiOutlinePencilAlt />} />
+      </StitcheWrapper>
     </>
   )
 }
