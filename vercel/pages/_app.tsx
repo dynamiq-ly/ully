@@ -1,9 +1,15 @@
 import type { AppProps } from 'next/app'
 
-// styles importing
-import { globals } from '@/config/stitches.config'
-globals()
+import { theme } from '@/config/stitche.config'
+import { ThemeProvider } from 'styled-components'
+import MainLayout from '@/layout/Main.layout'
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider theme={{ ...theme }}>
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
+    </ThemeProvider>
+  )
 }
