@@ -17,8 +17,8 @@ export const DesignTheme = createGlobalStyle`
     backface-visibility:hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    color: ${({ theme }) => theme.palette.accent_950};
-    background: ${({ theme }) => theme.palette.accent_050};
+    color: ${({ theme }) => theme.palette.accent_050};
+    background: ${({ theme }) => theme.palette.accent_950};
   }  
   /* width */
   ::-webkit-scrollbar {
