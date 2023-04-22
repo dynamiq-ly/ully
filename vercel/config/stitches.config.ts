@@ -18,6 +18,20 @@ declare module 'styled-components' {
       accent_950: string
     }
 
+    primary: {
+      accent_050: string
+      accent_100: string
+      accent_200: string
+      accent_300: string
+      accent_400: string
+      accent_500: string
+      accent_600: string
+      accent_700: string
+      accent_800: string
+      accent_900: string
+      accent_950: string
+    }
+
     secondary: {
       accent_050: string
       accent_100: string
@@ -47,6 +61,20 @@ export const theme: DefaultTheme = {
     accent_800: '#35373a',
     accent_900: '#2d2d2d',
     accent_950: '#121314',
+  },
+
+  primary: {
+    accent_050: '#effaff',
+    accent_100: '#dff3ff',
+    accent_200: '#b8eaff',
+    accent_300: '#78dbff',
+    accent_400: '#2ec8ff',
+    accent_500: '#06b2f1',
+    accent_600: '#008fce',
+    accent_700: '#0072a7',
+    accent_800: '#02608a',
+    accent_900: '#085072',
+    accent_950: '#06324b',
   },
 
   secondary: {
