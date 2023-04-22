@@ -43,6 +43,10 @@ export const StyledAuthForm = styled.div`
 export const StyledAuthFormBody = styled.div`
   flex: 1;
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 `
 
 export const StyledForm = styled.form`
@@ -53,10 +57,11 @@ export const StyledForm = styled.form`
 
   & > div:first-child {
     width: 100%;
+    gap: 0.5rem;
     display: flex;
+    margin-bottom: 18px;
     align-items: center;
     flex-direction: column;
-    gap: 0.5rem;
     & > p:first-child {
       font-size: 21px;
       font-weight: 600;
@@ -85,5 +90,30 @@ export const StyledAuthBanner = styled.div`
     position: absolute;
     right: 0;
     transform: scale(0.97);
+  }
+`
+
+export const StyledAuthResetLink = styled.div`
+  width: 400px;
+  font-size: 14px;
+  color: ${({ theme }) => theme.palette.accent_500};
+
+  ::first-letter {
+    text-transform: uppercase;
+  }
+
+  & > a {
+    color: ${({ theme }) => theme.primary.accent_700};
+  }
+`
+
+export const StyledAuthFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  > *{
+    text-align: center;
   }
 `
