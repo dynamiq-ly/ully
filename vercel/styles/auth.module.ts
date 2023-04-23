@@ -33,6 +33,11 @@ export const StyledAuthForm = styled.div`
 
   & > div:first-child {
     height: 100px;
+    display: grid;
+    align-items: center;
+    place-content: center;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   & > div:last-child {
@@ -113,7 +118,22 @@ export const StyledAuthFooter = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  > *{
+  > * {
     text-align: center;
   }
+`
+
+export const StyledAuthBackButton = styled.button`
+  left: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.palette.accent_200};
+  background: ${({ theme }) => theme.palette.accent_900};
+  border: 2px solid ${({ theme }) => theme.palette.accent_900};
 `

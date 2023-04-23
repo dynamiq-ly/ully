@@ -5,14 +5,15 @@ import Link from 'next/link'
 import Logo from '@/components/logo/Logo'
 
 import { useRouter } from 'next/router'
-import { StyledAuth, StyledAuthForm, StyledAuthBanner, StyledAuthFormBody, StyledAuthResetLink, StyledAuthFooter } from '@/styles/auth.module'
+import { MdOutlineKeyboardBackspace } from 'react-icons/md'
+import { StyledAuth, StyledAuthForm, StyledAuthBanner, StyledAuthFormBody, StyledAuthResetLink, StyledAuthFooter, StyledAuthBackButton } from '@/styles/auth.module'
 
 type AuthLayoutProps = {
   children: ReactElement
 }
 
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
-  const { pathname } = useRouter()
+  const { pathname, push } = useRouter()
 
   console.log(pathname)
 
@@ -20,6 +21,18 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
     <StyledAuth>
       <StyledAuthForm>
         <div>
+          <StyledAuthBackButton
+            onClick={() => {
+              switch (pathname) {
+                case '/auth':
+                  return push('/')
+                case '/auth/send-email':
+                  return push('/auth')
+              }
+            }}>
+            <MdOutlineKeyboardBackspace />
+          </StyledAuthBackButton>
+
           <Logo />
         </div>
         <StyledAuthFormBody>{children}</StyledAuthFormBody>
