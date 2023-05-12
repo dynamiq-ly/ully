@@ -19,6 +19,7 @@ export const LogoStyled = styled(motion.button)`
   all: unset;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: transparent;
   gap: 5px;
   cursor: pointer;

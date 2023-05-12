@@ -20,8 +20,9 @@ const Form = () => {
   return (
     <FormField>
       <FormContainer>
+        <Logo />
         <FormGroup>
-          <Logo />
+          <FormHeading>Sign in</FormHeading>
           <FormSubHeading>Sign in to your account to continue.</FormSubHeading>
         </FormGroup>
 

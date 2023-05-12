@@ -31,7 +31,6 @@ export const FormContainer = styled.div`
 `
 
 export const FormGroup = styled.div`
-  gap: 16px;
   display: flex;
   margin-bottom: 10px;
   justify-content: center;
