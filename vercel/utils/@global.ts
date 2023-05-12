@@ -18,7 +18,7 @@ export const DesignSystem = createGlobalStyle`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     color: ${({ theme }) => theme.colors.text.accent_100};
-    background: ${({ theme }) => theme.colors.background.accent_200};
+    background: ${({ theme }) => theme.colors.background.accent_100};
   }  
   /* width */
   ::-webkit-scrollbar {

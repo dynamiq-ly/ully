@@ -1,15 +1,6 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
-export const FormWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  height: 100vh;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-`
-
 export const FormField = styled(motion.div)`
   gap: 24px;
   display: flex;
@@ -27,7 +18,6 @@ export const FormContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.background.accent_100};
-  box-shadow: 0px 2px 6px rgba(24, 24, 28, 0.06), 0px 32px 41px -23px rgba(24, 24, 28, 0.07);
 `
 
 export const FormGroup = styled.div`
