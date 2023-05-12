@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const DesignTheme = createGlobalStyle`
+export const DesignSystem = createGlobalStyle`
   *, *::after, *::before {
     margin: 0;
     padding: 0;
@@ -17,8 +17,8 @@ export const DesignTheme = createGlobalStyle`
     backface-visibility:hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    color: ${({ theme }) => theme.palette.accent_050};
-    background: ${({ theme }) => theme.palette.accent_950};
+    color: ${({ theme }) => theme.colors.text.accent_100};
+    background: ${({ theme }) => theme.colors.background.accent_200};
   }  
   /* width */
   ::-webkit-scrollbar {
@@ -36,6 +36,6 @@ export const DesignTheme = createGlobalStyle`
   /* Handle */
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: ${({ theme }) => theme.palette.accent_800};
+    background: black;
   }
 `

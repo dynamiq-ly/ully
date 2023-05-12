@@ -1,8 +1,8 @@
+import Form from '@/components/Form'
+import { FormWrapper } from '@/styles/form.module'
 import Head from 'next/head'
 
-import Form from '@/components/Form'
-
-export default function Home() {
+export default function Index() {
   return (
     <>
       <Head>
@@ -11,7 +11,10 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main></main>
+
+      <FormWrapper>
+        <Form />
+      </FormWrapper>
     </>
   )
 }
