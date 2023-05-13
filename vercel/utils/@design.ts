@@ -5,7 +5,7 @@ export const DesignSystem = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.inter};
   }
   html,
   body {  
@@ -17,8 +17,8 @@ export const DesignSystem = createGlobalStyle`
     backface-visibility:hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    color: ${({ theme }) => theme.colors.text.accent_100};
-    background: ${({ theme }) => theme.colors.background.accent_100};
+    color: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.f100};
   }  
   /* width */
   ::-webkit-scrollbar {
@@ -36,6 +36,6 @@ export const DesignSystem = createGlobalStyle`
   /* Handle */
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: black;
+    background: ${({ theme }) => theme.colors.f800};
   }
 `

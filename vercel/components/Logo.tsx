@@ -29,7 +29,7 @@ export const LogoStyledText = styled.p`
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 1px;
-  color: ${({ theme }) => theme.colors.text.accent_100};
+  color: ${({ theme }) => theme.colors.black};
 `
 
 export default Logo

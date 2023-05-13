@@ -4,6 +4,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  env: {
+    APP_NAME: 'Ully',
+  },
 }
 
 module.exports = nextConfig

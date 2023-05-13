@@ -1,27 +1,26 @@
-import type { FC, ReactElement } from 'react'
+import type { FC } from 'react'
 
-import Logo from '@/shared/Logo'
+import Logo from '@/components/Logo'
 
-import { AuthContainer, AuthFooter, AuthForm, AuthHeader } from '@/styles/auth.module'
+import { AuthLayoutWrapper, AuthLayoutHeader, AuthLayoutContainer, AuthLayoutFooter } from '@/styles/layout.style'
 
-const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
-  return (
-    <AuthContainer>
-      <AuthHeader>
-        <Logo />
-      </AuthHeader>
-
-      <AuthForm>{children}</AuthForm>
-
-      <AuthFooter>
-        <p>© {new Date().getFullYear()}. ully</p>
-      </AuthFooter>
-    </AuthContainer>
-  )
+type Props = {
+  children: React.ReactNode
 }
 
-type AuthLayoutProps = {
-  children: ReactElement
+const AuthLayout: FC<Props> = ({ children }) => {
+  return (
+    <AuthLayoutWrapper>
+      <AuthLayoutHeader>
+        <Logo />
+      </AuthLayoutHeader>
+      <AuthLayoutContainer>{children}</AuthLayoutContainer>
+      <AuthLayoutFooter>
+        <p>© {new Date().getFullYear()} ully</p>
+        <p>terms of use.</p>
+      </AuthLayoutFooter>
+    </AuthLayoutWrapper>
+  )
 }
 
 export default AuthLayout

@@ -1,17 +1,12 @@
 import type { FC } from 'react'
+import { ButtonWrapper } from './ui/button.element'
 
-import { ButtonFiled, ButtonText } from '@/common/ui/button.style'
-
-const Button: FC<ButtonProps & Record<string, any>> = ({ title, ...rest }) => {
-  return (
-    <ButtonFiled>
-      <ButtonText>{title}</ButtonText>
-    </ButtonFiled>
-  )
+type Props = {
+  title: string
 }
 
-type ButtonProps = {
-  title: string
+const Button: FC<Props & Record<string, any>> = ({ title = 'button', ...rest }) => {
+  return <ButtonWrapper {...rest}>{title}</ButtonWrapper>
 }
 
 export default Button

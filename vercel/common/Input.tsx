@@ -1,29 +1,34 @@
-import type { FC } from 'react'
+import type { FC, ReactElement } from 'react'
 
-import { InputField, Label, LabelContainer, TextEdit, ValidationText } from '@/common/ui/input.style'
+import { InputElement, Label, LabelWrapper, TextField, TextWrapper, ValidationText } from '@/common/ui/input.element'
 
-const Input: FC<Partial<InputProps> & Record<string, any>> = ({ label, placeholder = 'placeholder', validationText, optional = false, type = 'text', isError = false, ...rest }) => {
-  return (
-    <InputField>
-      {label && (
-        <LabelContainer>
-          <Label>{label}</Label>
-          {optional && <p>optional</p>}
-        </LabelContainer>
-      )}
-      <TextEdit type={type} placeholder={`${placeholder}${!label && !optional ? '*' : ''}`} {...rest} />
-      {validationText && <ValidationText isError={isError}>{validationText}</ValidationText>}
-    </InputField>
-  )
+type Props = {
+  label: string
+  placeholder: string
+  type: 'text' | 'password' | 'email' | 'number'
+  icon: ReactElement | undefined
+  validationText: string
+  optional: boolean
 }
 
-type InputProps = {
-  label: string
-  optional: boolean
-  placeholder: string
-  validationText: string
-  isError: boolean
-  type: 'text' | 'email' | 'password' | 'number'
+const Input: FC<Partial<Props> & Record<string, any>> = ({ label, placeholder = 'type something', type = 'text', icon = undefined, validationText, optional = false, ...rest }) => {
+  return (
+    <InputElement>
+      {label && (
+        <LabelWrapper>
+          <Label>{label}</Label>
+          {optional && <p>Optional</p>}
+        </LabelWrapper>
+      )}
+
+      <TextWrapper>
+        {icon && <div>{icon}</div>}
+        <TextField type={type} placeholder={placeholder} {...rest} />
+      </TextWrapper>
+
+      {validationText && <ValidationText>validation text</ValidationText>}
+    </InputElement>
+  )
 }
 
 export default Input
