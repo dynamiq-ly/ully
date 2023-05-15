@@ -7,6 +7,14 @@ const nextConfig = {
   env: {
     APP_NAME: 'Ully',
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
