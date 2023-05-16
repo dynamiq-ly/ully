@@ -57,15 +57,20 @@ export const ConsoleLayoutWrapper = styled.main`
 
 export const ConsoleLayoutSidebar = styled.aside`
   height: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: ${({ theme }) => theme.spacing(6)};
   padding: ${({ theme }) => theme.spacing(12)};
   background: ${({ theme }) => theme.colors.white};
   grid-template-rows: min-content min-content auto min-content;
   filter: drop-shadow(0 0 0.125mm ${({ theme }) => theme.colors.f925});
 
-  & > div:nth-child(3) {
-    padding: ${({ theme }) => theme.spacing(12)} 0;
+  & > div:nth-child(2) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.spacing(8)};
+    padding: ${({ theme }) => theme.spacing(18)} 0;
   }
 `
 

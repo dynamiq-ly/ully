@@ -8,7 +8,7 @@ import { LogoutButton } from '@/shared/console-logout.module'
 const Consolelogout: FC = () => {
   return (
     <LogoutButton>
-      <Avatar src='' alt='image' width={36} height={36} style={{ borderRadius: '100%' }} />
+      <Avatar src='https://avatars.githubusercontent.com/u/44040669?v=4' alt='image' width={36} height={36} style={{ borderRadius: '100%' }} />
       <div>
         <p>walaa sebii</p>
         <p>walaa@ully.com</p>
