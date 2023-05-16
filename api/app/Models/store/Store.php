@@ -2,8 +2,11 @@
 
 namespace App\Models\store;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Store extends Model
 {
@@ -45,4 +48,24 @@ class Store extends Model
      * @var array<string, string>
      */
     protected $casts = [];
+
+    /**
+     * Get the user that owns the Store
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    /**
+     * Get all of the catalogs for the Store
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function catalogs(): HasMany
+    {
+        return $this->hasMany(Catalog::class, 'store_id', 'id');
+    }
 }
