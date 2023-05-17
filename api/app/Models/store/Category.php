@@ -5,9 +5,8 @@ namespace App\Models\store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Catalog extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -17,10 +16,8 @@ class Catalog extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'catalog_name',
-        'catalog_image',
-        'catalog_type',
-        'store_id',
+        'category_name',
+        'catalog_id',
     ];
 
     /**
@@ -37,23 +34,14 @@ class Catalog extends Model
      */
     protected $casts = [];
 
+
     /**
-     * Get the store that owns the Catalog
+     * Get the catalog that owns the Category
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function store(): BelongsTo
+    public function catalog(): BelongsTo
     {
-        return $this->belongsTo(Store::class, 'store_id', 'id');
-    }
-
-    /**
-     * Get all of the categories for the Catalog
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function categories(): HasMany
-    {
-        return $this->hasMany(Comment::class, 'catalog_id', 'id');
+        return $this->belongsTo(Catalog::class, 'catalog_id', 'id');
     }
 }
