@@ -35,7 +35,7 @@ class StoreController extends Controller
             return response()->json(['message' => 'Please upload a store thumbnail'], 400);
         }
 
-        $store = Store::create([
+        return Store::create([
             'store_logo' => $store_logo,
             'store_name' => $request->store_name,
             'store_description' => $request->store_description,
@@ -52,8 +52,6 @@ class StoreController extends Controller
             'store_view_count' => 0, // Set initial value to 0
             'user_id' => $request->user_id,
         ]);
-
-        return $store;
     }
 
 
@@ -62,11 +60,11 @@ class StoreController extends Controller
      */
     public function show(string $id)
     {
-        $store = Store::find($id);
+        $store = Store::with('catalogs')->find($id);
         $store->update([
             'store_view_count' => $store->store_view_count + 1,
         ]);
-        return $store->with('catalogs')->get();
+        return $store;
     }
 
     /**
@@ -74,7 +72,6 @@ class StoreController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $store = Store::find($id);
 
         if (!$store) {
@@ -91,23 +88,23 @@ class StoreController extends Controller
             $store->store_thumbnail = $request->file('store_thumbnail')->hashName();
         }
 
-        $store->store_name = $request->store_name;
-        $store->store_description = $request->store_description;
-        $store->store_email = $request->store_email;
-        $store->store_phone = $request->store_phone;
-        $store->store_address = $request->store_address;
-        $store->store_instagram = $request->store_instagram;
-        $store->store_facebook = $request->store_facebook;
-        $store->store_twitter = $request->store_twitter;
-        $store->store_whatsapp = $request->store_whatsapp;
-        $store->store_status = $request->store_status;
-        $store->store_is_featured = $request->store_is_featured;
-        $store->store_view_count = $request->store_view_count;
-
-        $store->save();
+        $store->update($request->only([
+            'store_name',
+            'store_description',
+            'store_email',
+            'store_phone',
+            'store_address',
+            'store_instagram',
+            'store_facebook',
+            'store_twitter',
+            'store_whatsapp',
+            'store_status',
+            'store_is_featured',
+        ]));
 
         return $store;
     }
+
 
     /**
      * Remove the specified resource from storage.
