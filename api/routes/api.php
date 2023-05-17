@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\store\CatalogController;
+use App\Http\Controllers\store\CategoryController;
 use App\Http\Controllers\store\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::prefix('/store')->group(function () {
+
+    // categories
+    Route::get('/category', CategoryController::class . '@index');
+    Route::post('/category', CategoryController::class . '@store');
+    Route::get('/category/{id}', CategoryController::class . '@show');
+    Route::patch('/category/{id}', CategoryController::class . '@update');
+    Route::delete('/category/{id}', CategoryController::class . '@destroy');
 
     // catalog
     Route::get('/catalog', CatalogController::class . '@index');

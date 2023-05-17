@@ -14,11 +14,13 @@ class CatalogController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
-        if ($query != null) {
-            return Catalog::where('store_id', $query)->get();
+        $catalog = Catalog::with('categories');
+
+        if ($query) {
+            return $catalog->where('store_id', $query)->get();
         }
 
-        return Catalog::all();
+        return $catalog->get();
     }
 
     /**
@@ -46,7 +48,7 @@ class CatalogController extends Controller
      */
     public function show(string $id)
     {
-        return Catalog::find($id);
+        return Catalog::with('categories')->find($id);
     }
 
     /**

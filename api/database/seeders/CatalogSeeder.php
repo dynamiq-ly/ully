@@ -16,12 +16,12 @@ class CatalogSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $catalog = [
                 'catalog_name' => $faker->name(),
                 'catalog_image' => $faker->imageUrl(),
                 'catalog_type' => $faker->randomElement(['TYPE_MANS', 'TYPE_WOMENS', 'TYPE_KIDS', 'TYPE_ACCESSORIES', 'TYPE_OTHERS']),
-                'store_id' => $faker->numberBetween(2, 11),
+                'store_id' => 1
             ];
 
             Catalog::create($catalog);
