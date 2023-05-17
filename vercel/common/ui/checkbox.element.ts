@@ -23,7 +23,7 @@ export const CheckboxWrapper = styled.div`
     color: ${({ theme }) => theme.colors.f600};
     width: ${({ theme }) => theme.spacing(10)};
     height: ${({ theme }) => theme.spacing(10)};
-    border: 2.5px solid ${({ theme }) => theme.colors.f600};
+    border: 2px solid ${({ theme }) => theme.colors.f600};
     border-radius: ${({ theme }) => theme.spacing(2)};
     transform: translateY(-0.075em);
 
@@ -49,6 +49,6 @@ export const CheckboxWrapper = styled.div`
 
   input[type='checkbox']:focus {
     outline: none;
-    border: 2.5px solid ${({ theme }) => theme.colors.f600};
+    border: 2px solid ${({ theme }) => theme.colors.f600};
   }
 `

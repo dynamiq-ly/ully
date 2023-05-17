@@ -41,14 +41,15 @@ export const TextWrapper = styled.div`
   border-radius: ${({ theme }) => theme.spacing(4)};
 
   background: ${({ theme }) => theme.colors.white};
-  border: 2.5px solid ${({ theme }) => theme.colors.f600};
+  border: 2px solid ${({ theme }) => theme.colors.f400};
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   &:focus-within {
     outline: none;
-    border: 2.5px solid ${({ theme }) => theme.colors.f900};
+    border: 2px solid ${({ theme }) => theme.colors.f900};
   }
 
   & > div {
@@ -69,6 +70,7 @@ export const TextField = styled.input`
   border: none;
   height: 100%;
   outline: none;
+  font-family: 450;
   padding: ${({ theme }) => theme.spacing(0)} ${({ theme }) => theme.spacing(5)};
 `
 

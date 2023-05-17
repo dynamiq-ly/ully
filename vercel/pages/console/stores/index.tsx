@@ -1,10 +1,11 @@
 import Head from 'next/head'
 
 import { __ } from '@/hooks/query'
-import { useEffect, useMemo, useState } from 'react'
+import { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { AiOutlineCheckCircle, AiOutlineClose } from 'react-icons/ai'
 
 import DataTable from '@/components/Table'
+import TableHeader from '@/components/TableHeader'
 
 import { TableText } from '@/shared/table.module'
 
@@ -78,7 +79,7 @@ export default function Index() {
         <title>{process.env.APP_NAME} | Console</title>
         <link rel='icon' href='/logo.png' />
       </Head>
-
+      <TableHeader title={'Stores'} subTitle={'A list of stores registered in the system.'} />
       <DataTable data={data} columns={columns} />
     </>
   )

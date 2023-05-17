@@ -1,12 +1,34 @@
+import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
 export const TableWrapper = styled.div`
+  width: 100%;
   overflow: hidden;
-  margin: ${({ theme }) => theme.spacing(24)} auto;
-  max-width: ${({ theme }) => theme.spacing(750)};
   background: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.spacing(4)};
   border: 1.5px solid ${({ theme }) => theme.colors.f300};
+`
+
+export const TableHeaderStyle = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: ${({ theme }) => theme.spacing(24)};
+
+  & > div {
+    & > p:first-child {
+      font-weight: 700;
+      text-transform: capitalize;
+      font-size: ${({ theme }) => theme.spacing(16)};
+      margin-bottom: ${({ theme }) => theme.spacing(2)};
+    }
+
+    & > p:last-child {
+      font-weight: 400;
+      font-size: ${({ theme }) => theme.spacing(7)};
+      color: ${({ theme }) => theme.colors.f800};
+    }
+  }
 `
 
 export const Table = styled.table`

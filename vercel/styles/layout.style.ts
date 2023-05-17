@@ -77,5 +77,10 @@ export const ConsoleLayoutSidebar = styled.aside`
 export const ConsoleLayoutContainer = styled.section`
   flex: 1;
   width: 100%;
-  /* padding: ${({ theme }) => theme.spacing(12)}; */
+  display: flex;
+  flex-direction: column;
+`
+export const ConsoleLaoyoutContent = styled.section`
+  width: ${({ theme }) => theme.spacing(750)};
+  margin: ${({ theme }) => theme.spacing(24)} auto;
 `

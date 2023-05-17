@@ -11,7 +11,7 @@ import Consolelogout from '@/components/Consolelogout'
 import BreadCrumb from '@/common/BreadCrumb'
 
 import { CollapsibleContainer } from '@/shared/collapsible.module'
-import { ConsoleLayoutContainer, ConsoleLayoutSidebar, ConsoleLayoutWrapper } from '@/styles/layout.style'
+import { ConsoleLaoyoutContent, ConsoleLayoutContainer, ConsoleLayoutSidebar, ConsoleLayoutWrapper } from '@/styles/layout.style'
 
 type Props = {
   children: ReactElement
@@ -33,7 +33,7 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
         </div>
 
         <div>
-          <CollapsibleContainer>
+          <CollapsibleContainer onClick={() => push('/console')}>
             <TbSmartHome size={21} /> <p>Dashboard</p>
           </CollapsibleContainer>
 
@@ -65,7 +65,7 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
       </ConsoleLayoutSidebar>
       <ConsoleLayoutContainer>
         <BreadCrumb />
-        {children}
+        <ConsoleLaoyoutContent>{children}</ConsoleLaoyoutContent>
       </ConsoleLayoutContainer>
     </ConsoleLayoutWrapper>
   )
