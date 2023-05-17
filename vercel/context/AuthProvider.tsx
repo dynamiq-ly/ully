@@ -11,6 +11,7 @@ type Props = {
 type AuthContext = {
   currentUser: User | null
   isSubscribed: boolean
+  isLoading: boolean
   login: (F: Login) => void
   resetEmail: (F: Reset) => void
   resetPsswd: (F: Password) => void
@@ -21,6 +22,7 @@ const initialContext: AuthContext = {
   currentUser: null,
 
   isSubscribed: false,
+  isLoading: false,
 
   login: () => {},
   resetEmail: () => {},
@@ -36,13 +38,14 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
   const keyLoad: string = 'isSubscribed'
   const [currentUser, setCurrentUser] = useState<User | null>(initialContext.currentUser)
-
+  const [isLoading, setIsLoading] = useState<boolean>(initialContext.isLoading)
   const [isSubscribed, setIsSubscribed] = useState<boolean>((typeof window !== 'undefined' && localStorage.getItem(keyLoad) === 'true') || initialContext.isSubscribed)
 
   const csrf = () => __.get('/sanctum/csrf-cookie')
 
   /* login function */
   const login = async (F: Login) => {
+    setIsLoading(true)
     await csrf()
 
     const { data, status } = await __.post('/login', F)
@@ -54,6 +57,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
       localStorage.setItem(keyLoad, 'true')
       push('/console')
     }
+    setIsLoading(false)
   }
 
   /* reset mail function */
@@ -93,6 +97,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
   }
 
   /* cuurent user */
+  const [AuthStateChange, setAuthStateChange] = useState<boolean>(false)
   const user = async () => {
     await csrf()
 
@@ -103,14 +108,17 @@ const AuthProvider: FC<Props> = ({ children }) => {
           localStorage.setItem(keyLoad, `${true}`)
           localStorage.setItem('auth', JSON.stringify(res.data))
           setIsSubscribed(true)
+          setAuthStateChange(true)
         } else {
           localStorage.setItem(keyLoad, `${false}`)
+          setAuthStateChange(true)
           setIsSubscribed(false)
           // console.clear()
         }
       })
       .catch(() => {
         setIsSubscribed(false)
+        setAuthStateChange(true)
         localStorage.setItem(keyLoad, `${false}`)
         // console.clear()
       })
@@ -120,7 +128,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
     user()
   }, []) // eslint-disable-line
 
-  return <UserContext.Provider value={{ currentUser, isSubscribed, ...{ login, resetEmail, resetPsswd, logout } }}>{children}</UserContext.Provider>
+  return <UserContext.Provider value={{ isLoading, currentUser, isSubscribed, ...{ login, resetEmail, resetPsswd, logout } }}>{AuthStateChange ? children : 'loading...'}</UserContext.Provider>
 }
 
 export default AuthProvider
