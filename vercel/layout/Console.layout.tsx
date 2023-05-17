@@ -23,7 +23,7 @@ interface CollapsibleItemType {
 }
 
 const ConsoleLayout: FC<Props> = ({ children }) => {
-  const { push } = useRouter()
+  const { push, pathname } = useRouter()
 
   return (
     <ConsoleLayoutWrapper>
@@ -33,25 +33,25 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
         </div>
 
         <div>
-          <CollapsibleContainer onClick={() => push('/console')}>
+          <CollapsibleContainer isOpen={pathname === '/console'} onClick={() => push('/console')}>
             <TbSmartHome size={21} /> <p>Dashboard</p>
           </CollapsibleContainer>
 
           <Collapsible title={'catalogs'} array={catalog} defaultOpen={false} />
 
-          <CollapsibleContainer>
+          <CollapsibleContainer isOpen={pathname.includes('/orders')}>
             <TbListDetails size={21} /> <p>orders</p>
           </CollapsibleContainer>
 
-          <CollapsibleContainer>
+          <CollapsibleContainer isOpen={pathname.includes('/transactions')}>
             <CgCreditCard size={19} /> <p>transactions</p>
           </CollapsibleContainer>
 
-          <CollapsibleContainer>
+          <CollapsibleContainer isOpen={pathname.includes('/users')}>
             <TbUsers size={21} /> <p>users</p>
           </CollapsibleContainer>
 
-          <CollapsibleContainer onClick={() => push('/console/stores')}>
+          <CollapsibleContainer isOpen={pathname.includes('/stores')} onClick={() => push('/console/stores')}>
             <MdOutlineStorefront size={21} /> <p>stores</p>
           </CollapsibleContainer>
 

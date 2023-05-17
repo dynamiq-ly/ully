@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import type { FC, ReactElement } from 'react'
 import { HiChevronRight, HiOutlineFolder } from 'react-icons/hi'
@@ -32,7 +32,7 @@ const Collapsible: FC<Props> = ({ title, icon, defaultOpen, array = [] }) => {
       },
     },
     closed: {
-      height: `0`,
+      height: `0px`,
       transition: {
         type: 'tween',
         staggerChildren: 0.1,
@@ -52,13 +52,15 @@ const Collapsible: FC<Props> = ({ title, icon, defaultOpen, array = [] }) => {
         </motion.div>
       </CollapsibleContainer>
 
-      <CollapsibleContent initial={'closed'} animate={isOpen ? 'open' : 'closed'} variants={{ ...dropDownVariants }}>
-        {isArray.map((el: CollapsibleItemType, index) => (
-          <CollapsibleItem key={index} variants={{ ...childVariants }} onClick={() => push(el.path)}>
-            {el.title}
-          </CollapsibleItem>
-        ))}
-      </CollapsibleContent>
+      {isOpen && (
+        <CollapsibleContent initial={'closed'} animate={isOpen ? 'open' : 'closed'} variants={{ ...dropDownVariants }}>
+          {isArray.map((el: CollapsibleItemType, index) => (
+            <CollapsibleItem key={index} variants={{ ...childVariants }} onClick={() => push(el.path)}>
+              {el.title}
+            </CollapsibleItem>
+          ))}
+        </CollapsibleContent>
+      )}
     </CollapsibleWrapper>
   )
 }

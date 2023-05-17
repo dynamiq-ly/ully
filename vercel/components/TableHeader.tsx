@@ -6,17 +6,18 @@ import { TbSearch } from 'react-icons/tb'
 
 type Props = {
   title: string
-  subTitle: string
+  subTitle?: string
+  search?: boolean
 }
 
-const TableHeader: FC<Props & Record<string, any>> = ({ title, subTitle, ...rest }) => {
+const TableHeader: FC<Props & Record<string, any>> = ({ title, subTitle, search = true, ...rest }) => {
   return (
     <TableHeaderStyle initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'tween' }}>
       <div>
         <p>{title}</p>
         <p>{subTitle}</p>
       </div>
-      <Input icon={<TbSearch />} placeholder={'Search'} {...rest} />
+      {search && <Input icon={<TbSearch />} placeholder={'Search'} {...rest} />}
     </TableHeaderStyle>
   )
 }

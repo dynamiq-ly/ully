@@ -6,11 +6,10 @@ export const CollapsibleWrapper = styled.div`
   align-items: baseline;
   flex-direction: column;
 `
-
-export const CollapsibleContainer = styled.button`
+export const CollapsibleContainer = styled.button<{ isOpen?: boolean }>`
   border: none;
   outline: none;
-  background: transparent;
+  background: ${({ theme, isOpen = false }) => (isOpen ? theme.accents.primary.p100 : theme.colors.white)};
 
   width: 100%;
   display: flex;
@@ -29,10 +28,10 @@ export const CollapsibleContainer = styled.button`
 
   & > p {
     flex: 1;
-    font-weight: 420;
+    font-weight: 450;
     text-align: start;
     text-transform: capitalize;
-    color: ${({ theme }) => theme.colors.f900};
+    color: ${({ theme, isOpen = false }) => (isOpen ? theme.colors.black : theme.colors.f900)};
   }
 
   & > div > svg {
