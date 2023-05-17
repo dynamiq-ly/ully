@@ -6,6 +6,7 @@ const nextConfig = {
   },
   env: {
     APP_NAME: 'Ully',
+    APP_SERVER: 'http://localhost:8000/',
   },
   images: {
     remotePatterns: [

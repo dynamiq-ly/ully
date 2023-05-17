@@ -33,7 +33,7 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
             <TbSmartHome size={21} /> <p>Dashboard</p>
           </CollapsibleContainer>
 
-          <Collapsible title={'catalogs'} array={catalog} defaultOpen={true} />
+          <Collapsible title={'catalogs'} array={catalog} defaultOpen={false} />
 
           <CollapsibleContainer>
             <TbListDetails size={21} /> <p>orders</p>

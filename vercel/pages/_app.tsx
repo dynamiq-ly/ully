@@ -7,6 +7,8 @@ import { ThemeProvider } from 'styled-components'
 import { palette } from '@/config/stitches.config'
 import { DesignSystem } from '@/utils/@design'
 
+import AuthProvider from '@/context/AuthProvider'
+
 import AuthLayout from '@/layout/Auth.layout'
 import ConsoleLayout from '@/layout/Console.layout'
 
@@ -34,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={palette}>
       <DesignSystem />
-      {getLayout()}
+      <AuthProvider>{getLayout()}</AuthProvider>
     </ThemeProvider>
   )
 }
