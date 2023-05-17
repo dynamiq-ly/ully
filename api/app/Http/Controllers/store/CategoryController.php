@@ -15,10 +15,10 @@ class CategoryController extends Controller
     {
         $query = $request->input('query');
         if ($query != null) {
-            return Category::where('catalog_id', $query)->get();
+            return Category::with('products')->where('catalog_id', $query)->get();
         }
 
-        return Category::all();
+        return Category::with('products')->get();
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        return Category::find($id);
+        return Category::with('products')->find($id);
     }
 
     /**

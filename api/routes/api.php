@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\product\ProductController;
 use App\Http\Controllers\store\CatalogController;
 use App\Http\Controllers\store\CategoryController;
 use App\Http\Controllers\store\StoreController;
@@ -22,6 +23,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::prefix('/store')->group(function () {
+
+    // products
+    Route::get('/product', ProductController::class . '@index');
+    Route::post('/product', ProductController::class . '@store');
+    Route::get('/product/{id}', ProductController::class . '@show');
+    Route::patch('/product/{id}', ProductController::class . '@update');
+    Route::delete('/product/{id}', ProductController::class . '@destroy');
 
     // categories
     Route::get('/category', CategoryController::class . '@index');

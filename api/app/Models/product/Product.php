@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models\store;
+namespace App\Models\product;
 
-use App\Models\product\Product;
+use App\Models\store\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Category extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -18,8 +18,15 @@ class Category extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'category_name',
-        'catalog_id',
+        'product_name',
+        'product_slug',
+        'product_reference',
+        'product_description',
+        'product_details',
+        'product_price',
+        'product_colors',
+        'product_status',
+        'category_id',
     ];
 
     /**
@@ -36,24 +43,23 @@ class Category extends Model
      */
     protected $casts = [];
 
-
     /**
-     * Get the catalog that owns the Category
+     * Get the category that owns the Product
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function catalog(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(Catalog::class, 'catalog_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     /**
-     * Get all of the products for the Category
+     * Get all of the images for the Product
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function products(): HasMany
+    public function images(): HasMany
     {
-        return $this->hasMany(Product::class, 'category_id', 'id');
+        return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
 }

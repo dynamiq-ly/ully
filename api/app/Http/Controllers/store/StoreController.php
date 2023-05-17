@@ -13,7 +13,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return Store::with('user', 'catalogs.categories')->get();
+        return Store::with('user', 'catalogs.categories.products')->get();
     }
 
     /**
@@ -60,7 +60,7 @@ class StoreController extends Controller
      */
     public function show(string $id)
     {
-        $store = Store::with('catalogs.categories')->find($id);
+        $store = Store::with('catalogs.categories.products')->find($id);
         $store->update([
             'store_view_count' => $store->store_view_count + 1,
         ]);

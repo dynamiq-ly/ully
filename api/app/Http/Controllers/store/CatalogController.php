@@ -14,7 +14,7 @@ class CatalogController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
-        $catalog = Catalog::with('categories');
+        $catalog = Catalog::with('categories.products');
 
         if ($query) {
             return $catalog->where('store_id', $query)->get();
