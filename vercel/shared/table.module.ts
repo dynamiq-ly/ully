@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const TableWrapper = styled.div`
   overflow: hidden;
@@ -42,4 +42,26 @@ export const TableHead = styled.th`
 
 export const TableData = styled.td`
   padding: ${({ theme }) => theme.spacing(4)};
+  font-size: ${({ theme }) => theme.spacing(7)};
+`
+
+type TableTextProps = {
+  color?: string
+  size?: number
+  badge?: string
+}
+export const TableText = styled.div<TableTextProps>`
+  display: flex;
+  font-weight: 450;
+  width: fit-content;
+  color: ${({ color }) => color};
+  font-size: ${({ theme, size = 6 }) => theme.spacing(size)};
+  background: ${({ badge }) => badge};
+
+  ${({ badge }) =>
+    badge &&
+    css`
+      border-radius: ${({ theme }) => theme.spacing(5)};
+      padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(5)};
+    `}
 `

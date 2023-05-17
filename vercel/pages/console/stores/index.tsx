@@ -2,8 +2,11 @@ import Head from 'next/head'
 
 import { __ } from '@/hooks/query'
 import { useEffect, useMemo, useState } from 'react'
+import { AiOutlineCheckCircle, AiOutlineClose } from 'react-icons/ai'
 
 import DataTable from '@/components/Table'
+
+import { TableText } from '@/shared/table.module'
 
 export default function Index() {
   const [data, setData] = useState([])
@@ -18,9 +21,49 @@ export default function Index() {
         Cell: (props: any) => <img src={`${process.env.APP_SERVER}storage/store/logo/${props.value}`} alt='logo' width={36} height={36} style={{ borderRadius: '100%' }} />,
       },
       { Header: 'Name', accessor: 'store_name' },
-      { Header: 'Owner', accessor: (d: Store) => `${d.user.name}|${d.user.email}`, Cell: (props: any) => props.value.split('|').map((el: string, key: number) => <p key={key}>{el}</p>) },
+      {
+        Header: 'Owner',
+        accessor: (d: any) => `${d.user.name}|${d.user.email}`,
+        Cell: (props: any) => (
+          <>
+            <TableText size={7}>{props.value.split('|')[0]}</TableText>
+            <TableText size={6} color={'#959595'}>
+              {props.value.split('|')[1]}
+            </TableText>
+          </>
+        ),
+      },
       { Header: 'Products', accessor: 'products_total' },
       { Header: 'Created', accessor: (d: Store) => new Date(d.created_at).toDateString() },
+      { Header: 'Views', accessor: 'store_view_count' },
+      {
+        Header: 'Featured',
+        accessor: 'store_is_featured',
+        Cell: (props: any) =>
+          props.value ? (
+            <TableText color={'#004D1D'} badge={'#91DDAD'}>
+              YES
+            </TableText>
+          ) : (
+            <TableText color={'#BC1C1C'} badge={'#FAA4A4'}>
+              NO
+            </TableText>
+          ),
+      },
+      {
+        Header: 'Active',
+        accessor: 'store_status',
+        Cell: (props: any) =>
+          props.value ? (
+            <TableText color={'#14AD4D'}>
+              <AiOutlineCheckCircle size={21} />
+            </TableText>
+          ) : (
+            <TableText color={'#F53535'}>
+              <AiOutlineClose size={21} />
+            </TableText>
+          ),
+      },
     ],
     []
   )
