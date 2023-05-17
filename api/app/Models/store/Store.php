@@ -40,7 +40,9 @@ class Store extends Model
      *
      * @var array<int, string>
      */
-    protected $hidden = [];
+    protected $hidden = [
+        'user_id'
+    ];
 
     /**
      * The attributes that should be cast.

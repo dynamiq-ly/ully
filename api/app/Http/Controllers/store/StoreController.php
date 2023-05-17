@@ -13,7 +13,21 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return Store::with('user', 'catalogs.categories.products')->get();
+        $stores = Store::with('user', 'catalogs.categories.products')->get();
+
+        $result = $stores->map(function ($store) {
+            $store->makeHidden('catalogs');
+
+            $store->products_total = $store->catalogs->flatMap(function ($catalog) {
+                return $catalog->categories->flatMap(function ($category) {
+                    return $category->products;
+                });
+            })->count();
+
+            return $store;
+        });
+
+        return $result;
     }
 
     /**
