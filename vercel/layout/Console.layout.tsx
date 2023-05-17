@@ -1,4 +1,5 @@
 import type { FC, ReactElement } from 'react'
+import { useRouter } from 'next/router'
 
 import { CgCreditCard } from 'react-icons/cg'
 import { MdOutlineStorefront } from 'react-icons/md'
@@ -7,6 +8,7 @@ import { TbListDetails, TbSettings, TbSmartHome, TbUsers } from 'react-icons/tb'
 import Logo from '@/components/Logo'
 import Collapsible from '@/components/Collapsible'
 import Consolelogout from '@/components/Consolelogout'
+import BreadCrumb from '@/common/BreadCrumb'
 
 import { CollapsibleContainer } from '@/shared/collapsible.module'
 import { ConsoleLayoutContainer, ConsoleLayoutSidebar, ConsoleLayoutWrapper } from '@/styles/layout.style'
@@ -21,6 +23,8 @@ interface CollapsibleItemType {
 }
 
 const ConsoleLayout: FC<Props> = ({ children }) => {
+  const { push } = useRouter()
+
   return (
     <ConsoleLayoutWrapper>
       <ConsoleLayoutSidebar>
@@ -47,7 +51,7 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
             <TbUsers size={21} /> <p>users</p>
           </CollapsibleContainer>
 
-          <CollapsibleContainer>
+          <CollapsibleContainer onClick={() => push('/console/stores')}>
             <MdOutlineStorefront size={21} /> <p>stores</p>
           </CollapsibleContainer>
 
@@ -59,7 +63,10 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
           <Consolelogout />
         </div>
       </ConsoleLayoutSidebar>
-      <ConsoleLayoutContainer>{children}</ConsoleLayoutContainer>
+      <ConsoleLayoutContainer>
+        <BreadCrumb />
+        {children}
+      </ConsoleLayoutContainer>
     </ConsoleLayoutWrapper>
   )
 }

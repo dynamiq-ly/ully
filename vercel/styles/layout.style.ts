@@ -63,7 +63,7 @@ export const ConsoleLayoutSidebar = styled.aside`
   padding: ${({ theme }) => theme.spacing(12)};
   background: ${({ theme }) => theme.colors.white};
   grid-template-rows: min-content min-content auto min-content;
-  filter: drop-shadow(0 0 0.125mm ${({ theme }) => theme.colors.f925});
+  border-right: 1px solid ${({ theme }) => theme.colors.f400};
 
   & > div:nth-child(2) {
     flex: 1;
@@ -77,5 +77,5 @@ export const ConsoleLayoutSidebar = styled.aside`
 export const ConsoleLayoutContainer = styled.section`
   flex: 1;
   width: 100%;
-  padding: ${({ theme }) => theme.spacing(12)};
+  /* padding: ${({ theme }) => theme.spacing(12)}; */
 `
