@@ -8,9 +8,15 @@ import DataTable from '@/components/Table'
 import TableHeader from '@/components/TableHeader'
 
 import { TableText } from '@/shared/table.module'
+import { useQuery } from 'react-query'
 
 export default function Index() {
-  const [data, setData] = useState([])
+  const { data, status } = useQuery(`@stores`, () => __.get('api/store').then((res) => res.data), {
+    retry: true,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+  })
 
   const columns = useMemo(
     () => [
@@ -69,10 +75,6 @@ export default function Index() {
     []
   )
 
-  useEffect(() => {
-    __.get('api/store').then((res) => setData(res.data))
-  }, [])
-
   return (
     <>
       <Head>
@@ -80,7 +82,7 @@ export default function Index() {
         <link rel='icon' href='/logo.png' />
       </Head>
       <TableHeader title={'Stores'} subTitle={'A list of stores registered in the system.'} />
-      <DataTable data={data} columns={columns} />
+      {status === 'success' && <DataTable data={data} columns={columns} />}
     </>
   )
 }

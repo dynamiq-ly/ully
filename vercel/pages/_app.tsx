@@ -1,7 +1,8 @@
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import type { ReactElement } from 'react'
+import { useRef } from 'react'
 
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider } from 'styled-components'
 
 import { palette } from '@/config/stitches.config'
@@ -14,6 +15,11 @@ import ConsoleLayout from '@/layout/Console.layout'
 
 export default function App({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter()
+  const queryClientRef = useRef<QueryClient>()
+
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient()
+  }
 
   const getLayout = () => {
     if (pathname.startsWith('/auth')) {
@@ -36,7 +42,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={palette}>
       <DesignSystem />
-      <AuthProvider>{getLayout()}</AuthProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClientRef.current}>{getLayout()}</QueryClientProvider>
+      </AuthProvider>
     </ThemeProvider>
   )
 }
