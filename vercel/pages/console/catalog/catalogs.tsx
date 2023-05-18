@@ -31,7 +31,7 @@ export default function Index() {
         <title>{process.env.APP_NAME} | Console</title>
         <link rel='icon' href='/logo.png' />
       </Head>
-      <TableHeader title={'Stores'} subTitle={'A list of stores registered in the system.'} />
+      <TableHeader title={'Catalogs'} subTitle={'A list of your categories.'} />
       {status === 'success' && <DataTable data={data} columns={columns} />}
     </>
   )

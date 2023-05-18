@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import { __ } from '@/hooks/query'
 import { useQuery } from 'react-query'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 import DataTable from '@/components/Table'
 import TableHeader from '@/components/TableHeader'
@@ -31,7 +31,7 @@ export default function Index() {
         <title>{process.env.APP_NAME} | Console</title>
         <link rel='icon' href='/logo.png' />
       </Head>
-      <TableHeader title={'Stores'} subTitle={'A list of stores registered in the system.'} />
+      <TableHeader title={'Products'} subTitle={'A list of your products.'} />
       {status === 'success' && <DataTable data={data} columns={columns} />}
     </>
   )

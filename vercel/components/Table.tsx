@@ -1,11 +1,34 @@
 import { FC } from 'react'
-import { useTable } from 'react-table'
+import { useTable, usePagination } from 'react-table'
 import { Table, TableData, TableHead, TableWrapper } from '@/shared/table.module'
+import { Pagination, PaginationNumber, PaginationButton } from '@/shared/pagination.module'
 
 import { BiTrashAlt, BiEditAlt } from 'react-icons/bi'
+import { TbChevronLeft, TbChevronRight, TbChevronsLeft, TbChevronsRight } from 'react-icons/tb'
 
-const DataTable: FC<ComponentProp> = function ({ data, columns }) {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, (hooks) => {
+type Props = {
+  data: any
+  columns: any
+}
+
+const DataTable: FC<Props> = function ({ data, columns }) {
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    prepareRow,
+    /* pagination */
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
+  } = useTable({ columns, data, initialState: { pageIndex: 0 } }, usePagination, (hooks) => {
     hooks.visibleColumns.push((columns) => [
       ...columns,
       {
@@ -41,7 +64,7 @@ const DataTable: FC<ComponentProp> = function ({ data, columns }) {
           })}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {page.map((row) => {
             prepareRow(row)
             const { key, ...restRowProps } = row.getRowProps()
             return (
@@ -59,13 +82,50 @@ const DataTable: FC<ComponentProp> = function ({ data, columns }) {
           })}
         </tbody>
       </Table>
+
+      {/* pagination */}
+
+      {data.length > 10 && (
+        <Pagination>
+          <PaginationNumber>
+            <PaginationButton onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+              <TbChevronsLeft size={18} />
+            </PaginationButton>
+            <PaginationButton onClick={() => previousPage()} disabled={!canPreviousPage}>
+              <TbChevronLeft size={18} />
+            </PaginationButton>
+          </PaginationNumber>
+          <span>
+            Page{' '}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{' '}
+          </span>
+          <PaginationNumber>
+            <PaginationButton onClick={() => nextPage()} disabled={!canNextPage}>
+              <TbChevronRight size={18} />
+            </PaginationButton>
+            <PaginationButton onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+              <TbChevronsRight size={18} />
+            </PaginationButton>
+          </PaginationNumber>
+          {/* <select
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value))
+            }}>
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select> */}
+        </Pagination>
+      )}
+
+      {/* pagination */}
     </TableWrapper>
   )
-}
-
-type ComponentProp = {
-  data: any
-  columns: any
 }
 
 export default DataTable
