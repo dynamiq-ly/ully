@@ -38,6 +38,7 @@ type Category = {
   created_at: string
   updated_at: string
   products: Product[]
+  catalog: Catalog
 }
 
 type Product = {
@@ -51,6 +52,7 @@ type Product = {
   product_slug: string
   product_status: number
   images: Image[]
+  category: Category
   category_id: number
   created_at: string
   updated_at: string

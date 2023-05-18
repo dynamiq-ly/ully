@@ -27,7 +27,7 @@ export const PaginationButton = styled.button`
   justify-content: center;
   width: ${({ theme }) => theme.spacing(14)};
   height: ${({ theme }) => theme.spacing(14)};
-  background: ${({ theme }) => theme.accents.primary.p600};
+  background: ${({ theme }) => theme.accents.primary.p800};
 
   &:disabled {
     cursor: not-allowed;

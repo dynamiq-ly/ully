@@ -20,6 +20,7 @@ export default function Index() {
       { Header: '', accessor: 'id' },
       { Header: 'Name', accessor: 'category_name' },
       { Header: 'Products', accessor: 'products.length' },
+      { Header: 'Catalog', accessor: 'catalog.catalog_name' },
     ],
     []
   )
