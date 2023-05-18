@@ -4,6 +4,8 @@ import { useState, useEffect, useContext, createContext } from 'react'
 
 import { __ } from '@/hooks/query'
 
+import Loader from '@/common/Loader'
+
 type Props = {
   children: ReactElement
 }
@@ -130,12 +132,14 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ isLoading, currentUser, isSubscribed, ...{ login, resetEmail, resetPsswd, logout } }}>
-      {
-        // AuthStateChange ?
+      {AuthStateChange ? (
         children
-        // :
-        // 'loading...'
-      }
+      ) : (
+        <>
+          <p style={{ position: 'absolute', opacity: 0 }}>loading</p>
+          <Loader />
+        </>
+      )}
     </UserContext.Provider>
   )
 }

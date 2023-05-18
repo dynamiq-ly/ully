@@ -93,6 +93,7 @@ export const StoreLayoutWrapper = styled.main`
   min-height: 100vh;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(6)};
+  background: ${({ theme }) => theme.colors.white};
 `
 
 export const StoreLayoutHeader = styled.div`
@@ -105,6 +106,7 @@ export const StoreLayoutHeader = styled.div`
   padding: 0 ${({ theme }) => theme.spacing(12)};
   min-height: ${({ theme }) => theme.spacing(32)};
   border-bottom: 1px solid ${({ theme }) => theme.colors.f300};
+  background: ${({ theme }) => theme.colors.white};
 `
 
 export const StoreLayoutLogo = styled.div`
@@ -133,5 +135,5 @@ export const StoreLayoutActions = styled.div`
 
 export const StoreLayoutContent = styled.section`
   flex: 1;
-  min-height: 100%;
+  background: ${({ theme }) => theme.colors.white};
 `

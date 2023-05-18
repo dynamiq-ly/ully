@@ -4,6 +4,8 @@ import { useContext, createContext, useEffect } from 'react'
 
 import { __ } from '@/hooks/query'
 
+import Loader from '@/common/Loader'
+
 import { useQuery } from 'react-query'
 
 type Props = {
@@ -38,10 +40,15 @@ const ShopProvider: FC<Props> = ({ children }) => {
   }, [shop])
 
   if (!query.shop) {
-    return <p>Loading...</p>
+    return (
+      <>
+        <p style={{ position: 'absolute', opacity: 0 }}>loading</p>
+        <Loader />
+      </>
+    )
   }
 
-  return <StoreContext.Provider value={{ shop }}>{status === 'loading' ? 'loader' : children}</StoreContext.Provider>
+  return <StoreContext.Provider value={{ shop }}>{status === 'loading' ? <Loader /> : children}</StoreContext.Provider>
 }
 
 export default ShopProvider
