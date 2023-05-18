@@ -11,7 +11,7 @@ const BreadCrumb = () => {
       {pathname.split('/').map((el: string, key: number) => (
         <BreadCrumbText key={key}>
           {el}
-          {key !== pathname.split.length && <TbTerminal size={18} />}
+          {key - 1 !== pathname.split.length && <TbTerminal size={18} />}
         </BreadCrumbText>
       ))}
     </BreadCrumbContainer>
