@@ -18,6 +18,7 @@ type Store = {
   updated_at: string
   products_total: number
   user: User
+  catalogs: Catalog[]
 }
 
 type Catalog = {

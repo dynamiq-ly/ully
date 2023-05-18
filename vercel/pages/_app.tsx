@@ -12,6 +12,8 @@ import AuthProvider from '@/context/AuthProvider'
 
 import AuthLayout from '@/layout/Auth.layout'
 import ConsoleLayout from '@/layout/Console.layout'
+import ShopLayout from '@/layout/Shop.layout'
+import ShopProvider from '@/context/ShopProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter()
@@ -34,6 +36,15 @@ export default function App({ Component, pageProps }: AppProps) {
         <ConsoleLayout>
           <Component {...pageProps} />
         </ConsoleLayout>
+      )
+    }
+    if (pathname.startsWith('/shop')) {
+      return (
+        <ShopProvider>
+          <ShopLayout>
+            <Component {...pageProps} />
+          </ShopLayout>
+        </ShopProvider>
       )
     }
     return <Component {...pageProps} />

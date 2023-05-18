@@ -17,14 +17,7 @@ const Avatar: FC<Props & Record<string, any>> = ({ src, alt, ...rest }) => {
   const handleImageError: React.EventHandler<React.SyntheticEvent<HTMLImageElement, Event>> = () => {
     setError(true)
   }
-  return (
-    <Image
-      alt={alt}
-      onError={handleImageError}
-      src={error ? 'https://cdn.dribbble.com/userupload/3123398/file/original-e48669b0f3daa95a09d02b7aa83060ce.png?compress=1&resize=1024x768' : src}
-      {...rest}
-    />
-  )
+  return <Image alt={alt} onError={handleImageError} src={error ? '/avatar.png' : src} {...rest} />
 }
 
 export default Avatar

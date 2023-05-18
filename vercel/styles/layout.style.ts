@@ -84,3 +84,54 @@ export const ConsoleLaoyoutContent = styled.section`
   width: ${({ theme }) => theme.spacing(750)};
   margin: ${({ theme }) => theme.spacing(24)} auto;
 `
+
+/* store layout */
+export const StoreLayoutWrapper = styled.main`
+  width: 100%;
+  display: flex;
+  height: 100vh;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(6)};
+`
+
+export const StoreLayoutHeader = styled.div`
+  top: 0;
+  display: grid;
+  position: sticky;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: ${({ theme }) => theme.spacing(24)};
+  padding: 0 ${({ theme }) => theme.spacing(12)};
+  min-height: ${({ theme }) => theme.spacing(32)};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.f300};
+`
+
+export const StoreLayoutLogo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(4)};
+`
+
+export const StoreLayoutActions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: ${({ theme }) => theme.spacing(12)};
+
+  & > div {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: ${({ theme }) => theme.spacing(2)};
+
+    & > button {
+      padding: ${({ theme }) => theme.spacing(4)};
+    }
+  }
+`
+
+export const StoreLayoutContent = styled.section`
+  flex: 1;
+  min-height: 100%;
+`

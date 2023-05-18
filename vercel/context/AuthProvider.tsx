@@ -128,7 +128,16 @@ const AuthProvider: FC<Props> = ({ children }) => {
     user()
   }, []) // eslint-disable-line
 
-  return <UserContext.Provider value={{ isLoading, currentUser, isSubscribed, ...{ login, resetEmail, resetPsswd, logout } }}>{AuthStateChange ? children : 'loading...'}</UserContext.Provider>
+  return (
+    <UserContext.Provider value={{ isLoading, currentUser, isSubscribed, ...{ login, resetEmail, resetPsswd, logout } }}>
+      {
+        // AuthStateChange ?
+        children
+        // :
+        // 'loading...'
+      }
+    </UserContext.Provider>
+  )
 }
 
 export default AuthProvider
