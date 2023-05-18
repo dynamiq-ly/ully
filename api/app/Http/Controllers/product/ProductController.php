@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = $request->input('query');
-        $product = Product::with('images');
+        $product = Product::with('category', 'images');
 
         if ($query) {
             return $product->where('category_id', $query)->get();
@@ -59,7 +59,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        return Product::with('images')->find($id);
+        return Product::with('category', 'images')->find($id);
     }
 
     /**
