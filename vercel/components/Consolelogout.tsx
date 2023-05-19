@@ -11,7 +11,7 @@ const Consolelogout: FC = () => {
 
   return (
     <LogoutButton onClick={() => logout()}>
-      <Avatar src='https://avatars.githubusercontent.com/u/44040669?v=4' alt='image' width={36} height={36} style={{ borderRadius: '100%' }} />
+      <Avatar src='' alt='image' width={36} height={36} style={{ borderRadius: '100%' }} />
       <div>
         <p>{currentUser?.name}</p>
         <p>{currentUser?.email}</p>

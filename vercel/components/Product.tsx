@@ -14,3 +14,11 @@ const Product: FC = () => {
 }
 
 export default Product
+
+type CatalogProps = {
+  catalog: Catalog
+}
+
+export const ProductCatalog: FC<CatalogProps> = ({ catalog }) => {
+  return <ProductCardImage>{/* <img src={`${process.env.APP_SERVER}storage/product/catalog/${catalog.catalog_image}`} /> */}</ProductCardImage>
+}

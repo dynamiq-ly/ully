@@ -74,7 +74,8 @@ class StoreController extends Controller
      */
     public function show(string $id)
     {
-        $store = Store::with('catalogs.categories.products')->find($id);
+        // get store by store_name
+        $store = Store::with('catalogs.categories.products')->where('store_name', $id)->first();
         $store->update([
             'store_view_count' => $store->store_view_count + 1,
         ]);

@@ -135,5 +135,7 @@ export const StoreLayoutActions = styled.div`
 
 export const StoreLayoutContent = styled.section`
   flex: 1;
+  width: ${({ theme }) => theme.spacing(750)};
+  margin: ${({ theme }) => theme.spacing(24)} auto;
   background: ${({ theme }) => theme.colors.white};
 `
