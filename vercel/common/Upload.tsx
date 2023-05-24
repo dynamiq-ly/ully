@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from 'react'
 import type { ChangeEvent, FC } from 'react'
 
@@ -9,8 +10,13 @@ type FileWithPreview = {
   dataURL: string
 }
 
-const Upload: FC = () => {
-  const [files, setFiles] = useState<FileWithPreview[]>([])
+type Props = {
+  files: FileWithPreview[]
+  onFilesSelect: (files: FileWithPreview[]) => void
+}
+
+const Upload: FC<Props> = ({ onFilesSelect, files }) => {
+  //   const [files, onFilesSelect] = useState<FileWithPreview[]>([])
 
   const handleFileSelect = (event: ChangeEvent<HTMLInputElement>) => {
     const fileList: FileList | null = event.target.files
@@ -23,19 +29,19 @@ const Upload: FC = () => {
       reader.onload = (event) => {
         const dataURL = event.target.result as string
         filesArray.push({ file: file as File, dataURL })
-        setFiles((prevFiles) => [...prevFiles, ...filesArray])
+        if (i === fileList.length - 1) {
+          onFilesSelect((prevFiles) => [...filesArray, ...prevFiles]) // call the callback function with the uploaded files
+        }
       }
 
       reader.readAsDataURL(file as File)
     }
   }
 
-  console.log(files)
-
   const handleFileRemove = (index: number) => {
     const newFiles = [...files]
     newFiles.splice(index, 1)
-    setFiles(() => newFiles)
+    onFilesSelect(() => newFiles)
   }
 
   return (

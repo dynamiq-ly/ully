@@ -5,12 +5,16 @@ import Input from '@/common/Input'
 import Upload from '@/common/Upload'
 import TableHeader from '@/components/TableHeader'
 
+type FileWithPreview = {
+  file: File
+  dataURL: string
+}
+
 export default function Index() {
   const [store, setStore] = useState<VendorStore>({
     store_logo: null,
     store_name: '',
     store_description: '',
-    store_thumbnail: null,
     store_email: '',
     store_phone: '',
     store_address: '',
@@ -25,6 +29,12 @@ export default function Index() {
     updated_at: '',
   })
 
+  const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([])
+
+  const handleFormChange = (binding: string, value: string) => setStore({ ...store, [binding]: value })
+
+  console.log(uploadedFiles)
+
   return (
     <>
       <Head>
@@ -35,13 +45,7 @@ export default function Index() {
       <TableHeader title={store.store_name || 'Create Your Store'} subTitle={'Get started in your journey by creating your own store.'} search={false} />
 
       <Input />
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-      <Input />
-      <Upload />
+      <Upload files={uploadedFiles} onFilesSelect={setUploadedFiles} />
     </>
   )
 }
@@ -50,7 +54,6 @@ type VendorStore = {
   store_logo: File | null
   store_name: string
   store_description: string
-  store_thumbnail: File | null
   store_email: string
   store_phone: string
   store_address: string

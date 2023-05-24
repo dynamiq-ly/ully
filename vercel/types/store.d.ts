@@ -3,7 +3,6 @@ type Store = {
   store_logo: string
   store_name: string
   store_description: string
-  store_thumbnail: string
   store_email: string
   store_phone: string
   store_address: string
