@@ -12,6 +12,7 @@ import BreadCrumb from '@/common/BreadCrumb'
 
 import { CollapsibleContainer } from '@/shared/collapsible.module'
 import { ConsoleLaoyoutContent, ConsoleLayoutContainer, ConsoleLayoutSidebar, ConsoleLayoutWrapper } from '@/styles/layout.style'
+import { __auth } from '@/context/AuthProvider'
 
 type Props = {
   children: ReactElement
@@ -24,6 +25,7 @@ interface CollapsibleItemType {
 
 const ConsoleLayout: FC<Props> = ({ children }) => {
   const { push, pathname } = useRouter()
+  const { currentUser } = __auth()
 
   return (
     <ConsoleLayoutWrapper>
@@ -37,6 +39,16 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
             <TbSmartHome size={21} /> <p>Dashboard</p>
           </CollapsibleContainer>
 
+          {currentUser?.role === 'p_u_admin' ? (
+            <CollapsibleContainer isOpen={pathname.includes('/stores')} onClick={() => push('/console/stores')}>
+              <MdOutlineStorefront size={21} /> <p>stores</p>
+            </CollapsibleContainer>
+          ) : (
+            <CollapsibleContainer isOpen={pathname.includes('/store')} onClick={() => push('/console/store')}>
+              <MdOutlineStorefront size={21} /> <p>your store</p>
+            </CollapsibleContainer>
+          )}
+
           <Collapsible title={'catalogs'} array={catalog} defaultOpen={false} />
 
           <CollapsibleContainer isOpen={pathname.includes('/orders')}>
@@ -47,13 +59,11 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
             <CgCreditCard size={19} /> <p>transactions</p>
           </CollapsibleContainer>
 
-          <CollapsibleContainer isOpen={pathname.includes('/users')}>
-            <TbUsers size={21} /> <p>users</p>
-          </CollapsibleContainer>
-
-          <CollapsibleContainer isOpen={pathname.includes('/stores')} onClick={() => push('/console/stores')}>
-            <MdOutlineStorefront size={21} /> <p>stores</p>
-          </CollapsibleContainer>
+          {currentUser?.role === 'p_u_admin' && (
+            <CollapsibleContainer isOpen={pathname.includes('/users')}>
+              <TbUsers size={21} /> <p>users</p>
+            </CollapsibleContainer>
+          )}
 
           <CollapsibleContainer>
             <TbSettings size={21} /> <p>Setting</p>

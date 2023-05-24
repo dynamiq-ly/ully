@@ -35,6 +35,17 @@ declare module 'styled-components' {
         p800: string
         p900: string
       }
+      error: {
+        e100: string
+        e200: string
+        e300: string
+        e400: string
+        e500: string
+        e600: string
+        e700: string
+        e800: string
+        e900: string
+      }
     }
   }
 }
@@ -75,6 +86,17 @@ export const palette: DefaultTheme = {
       p700: '#0081F1',
       p800: '#006ADC',
       p900: '#00254D',
+    },
+    error: {
+      e100: '#FEEBEB',
+      e200: '#FFE3E3',
+      e300: '#FFC9C9',
+      e400: '#FAA4A4',
+      e500: '#FF7F7F',
+      e600: '#F75656',
+      e700: '#F53535',
+      e800: '#E12121',
+      e900: '#BC1C1C',
     },
   },
 }
