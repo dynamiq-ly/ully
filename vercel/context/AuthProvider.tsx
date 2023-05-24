@@ -87,7 +87,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
       localStorage.setItem('auth', JSON.stringify(data))
       localStorage.setItem(keyLoad, 'true')
       user().then(() => {
-        push('/shop')
+        push('/')
       })
     }
     setIsLoading(false)
@@ -110,7 +110,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
       localStorage.setItem('auth', JSON.stringify(data))
       localStorage.setItem(keyLoad, 'true')
       user().then(() => {
-        push('/shop')
+        push('/')
       })
     }
   }

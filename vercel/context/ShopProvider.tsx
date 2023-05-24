@@ -25,6 +25,7 @@ export const __shop = () => useContext(StoreContext)
 
 const ShopProvider: FC<Props> = ({ children }) => {
   const { query } = useRouter()
+
   const { data: shop, status } = useQuery<Store>(['@shop', query.shop], async () => await __.get(`api/store/${query.shop}`).then((res) => res.data), {
     enabled: !!query.shop,
     retry: true,
