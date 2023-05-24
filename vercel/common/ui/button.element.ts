@@ -17,6 +17,7 @@ export const ButtonWrapper = styled.button<ButtonProps>`
   height: ${({ theme }) => theme.spacing(19)};
   max-height: ${({ theme }) => theme.spacing(19)};
   border-radius: ${({ theme }) => theme.spacing(4)};
+  padding: 0px ${({ theme }) => theme.spacing(8)};
 
   ${({ bg }) => {
     switch (bg) {

@@ -21,7 +21,7 @@ const ShopLayout: FC<Props> = ({ children }) => {
     <StoreLayoutWrapper>
       <StoreLayoutHeader>
         <StoreLayoutLogo>
-          <Avatar src={`${process.env.APP_SERVER}storage/store/logo/${shop?.store_logo}`} alt={'store logo'} width={38} height={38} />
+          <Avatar src={`${process.env.APP_SERVER}storage/store/${shop?.store_logo}`} alt={'store logo'} width={38} height={38} />
           <p>{shop?.store_name}</p>
         </StoreLayoutLogo>
         <Input placeholder={'Search'} icon={<TbSearch size={21} />} />
