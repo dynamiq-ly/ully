@@ -15,6 +15,7 @@ type AuthContext = {
   isSubscribed: boolean
   isLoading: boolean
   login: (F: Login) => void
+  register: (F: Register) => void
   resetEmail: (F: Reset) => void
   resetPsswd: (F: Password) => void
   logout: () => void
@@ -27,6 +28,7 @@ const initialContext: AuthContext = {
   isLoading: false,
 
   login: () => {},
+  register: () => {},
   resetEmail: () => {},
   resetPsswd: () => {},
   logout: () => {},
@@ -45,6 +47,34 @@ const AuthProvider: FC<Props> = ({ children }) => {
 
   const csrf = () => __.get('/sanctum/csrf-cookie')
 
+  /* cuurent user */
+  const [AuthStateChange, setAuthStateChange] = useState<boolean>(false)
+  const user = async () => {
+    await csrf()
+
+    return await __.get('/api/user')
+      .then((res) => {
+        if (res.status === 200) {
+          setCurrentUser(res.data)
+          localStorage.setItem(keyLoad, `${true}`)
+          localStorage.setItem('auth', JSON.stringify(res.data))
+          setIsSubscribed(true)
+          setAuthStateChange(true)
+        } else {
+          localStorage.setItem(keyLoad, `${false}`)
+          setAuthStateChange(true)
+          setIsSubscribed(false)
+          // console.clear()
+        }
+      })
+      .catch(() => {
+        setIsSubscribed(false)
+        setAuthStateChange(true)
+        localStorage.setItem(keyLoad, `${false}`)
+        // console.clear()
+      })
+  }
+
   /* login function */
   const login = async (F: Login) => {
     setIsLoading(true)
@@ -55,11 +85,38 @@ const AuthProvider: FC<Props> = ({ children }) => {
     if (status === 204) {
       setIsSubscribed(false)
       localStorage.setItem('auth', JSON.stringify(data))
-      user()
       localStorage.setItem(keyLoad, 'true')
-      push('/console')
+      user().then(() => {
+        if (data.role === 'p_u_client') {
+          push('/shop')
+        } else {
+          push('/console')
+        }
+      })
     }
     setIsLoading(false)
+  }
+
+  /* register function */
+  const register = async (F: Register) => {
+    setIsLoading(true)
+    await csrf()
+
+    /** multipart config */
+    const { data, status } = await __.post('/register', F, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+
+    if (status === 204) {
+      setIsSubscribed(false)
+      localStorage.setItem('auth', JSON.stringify(data))
+      localStorage.setItem(keyLoad, 'true')
+      user().then(() => {
+        push('/shop')
+      })
+    }
   }
 
   /* reset mail function */
@@ -98,40 +155,12 @@ const AuthProvider: FC<Props> = ({ children }) => {
     }
   }
 
-  /* cuurent user */
-  const [AuthStateChange, setAuthStateChange] = useState<boolean>(false)
-  const user = async () => {
-    await csrf()
-
-    return await __.get('/api/user')
-      .then((res) => {
-        if (res.status === 200) {
-          setCurrentUser(res.data)
-          localStorage.setItem(keyLoad, `${true}`)
-          localStorage.setItem('auth', JSON.stringify(res.data))
-          setIsSubscribed(true)
-          setAuthStateChange(true)
-        } else {
-          localStorage.setItem(keyLoad, `${false}`)
-          setAuthStateChange(true)
-          setIsSubscribed(false)
-          // console.clear()
-        }
-      })
-      .catch(() => {
-        setIsSubscribed(false)
-        setAuthStateChange(true)
-        localStorage.setItem(keyLoad, `${false}`)
-        // console.clear()
-      })
-  }
-
   useEffect(() => {
     user()
   }, []) // eslint-disable-line
 
   return (
-    <UserContext.Provider value={{ isLoading, currentUser, isSubscribed, ...{ login, resetEmail, resetPsswd, logout } }}>
+    <UserContext.Provider value={{ isLoading, currentUser, isSubscribed, ...{ login, register, resetEmail, resetPsswd, logout } }}>
       {AuthStateChange ? (
         children
       ) : (

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { ChangeEvent, useState } from 'react'
-import { TbMail, TbLock, TbArrowNarrowRight } from 'react-icons/tb'
+import { TbMail, TbLock, TbArrowNarrowRight, TbUser } from 'react-icons/tb'
 
 import Input from '@/common/Input'
 import Checkbox from '@/common/Checkbox'
@@ -13,12 +13,15 @@ import { Form, FormGroup, FormHeader } from '@/shared/form.module'
 import { __auth } from '@/context/AuthProvider'
 
 export default function Index() {
-  const { login } = __auth()
+  const { register } = __auth()
 
   const [isForm, setForm] = useState<Form>({
+    name: '',
     email: '',
     password: '',
-    remember: false,
+    profile_picture: '',
+    role: 'P_U_Client',
+    account_status: true,
   })
 
   const handleFormChange = (binding: string, value: string | boolean) => setForm({ ...isForm, [binding]: value })
@@ -35,6 +38,7 @@ export default function Index() {
             <p>Sign In</p>
             <p>Sign in to your account to continue.</p>
           </FormHeader>
+          <Input value={isForm.name} type={'email'} placeholder={'Type your name'} icon={<TbUser />} onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormChange('name', e.target.value)} />
           <Input value={isForm.email} type={'email'} placeholder={'Type your mail'} icon={<TbMail />} onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormChange('email', e.target.value)} />
           <Input
             value={isForm.password}
@@ -43,17 +47,13 @@ export default function Index() {
             icon={<TbLock />}
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormChange('password', e.target.value)}
           />
-          <FormGroup>
-            <Checkbox label={'Keep me signed in.'} check={isForm.remember} onChange={(e: ChangeEvent<HTMLInputElement>) => handleFormChange('remember', e.target.checked)} />
-            <Link href={'/auth/forgot'} title={'forgot?'} />
-          </FormGroup>
           <Button
-            title={'login'}
+            title={'create account'}
             onClick={() => {
-              login(isForm)
+              register(isForm)
             }}
           />
-          <Link href={'/auth/register'} title={'create an account'} icon={<TbArrowNarrowRight />} direction />
+          <Link href={'/auth/login'} title={'login to your account'} icon={<TbArrowNarrowRight />} direction />
         </Form>
       </AuthWrapper>
     </>
@@ -61,7 +61,10 @@ export default function Index() {
 }
 
 type Form = {
+  name: string
   email: string
   password: string
-  remember: boolean
+  profile_picture?: string
+  role: 'P_U_Client' | 'P_U_Vendor'
+  account_status: boolean
 }
