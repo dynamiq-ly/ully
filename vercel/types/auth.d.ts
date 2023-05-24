@@ -9,7 +9,7 @@ type Register = {
   email: string
   password: string
   profile_picture?: string
-  role: 'P_U_Client' | 'P_U_Vendor'
+  role: 'p_u_client' | 'p_u_vendor'
   account_status: boolean
 }
 
@@ -29,7 +29,7 @@ type User = {
   name: string
   email: string
   email_verified_at: string
-  role: 'P_U_Client' | 'P_U_Vendor' | 'P_U_Admin'
+  role: 'p_u_client' | 'p_u_vendor' | 'p_u_admin'
   created_at: string
   updated_at: string
 }

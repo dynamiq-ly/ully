@@ -87,11 +87,7 @@ const AuthProvider: FC<Props> = ({ children }) => {
       localStorage.setItem('auth', JSON.stringify(data))
       localStorage.setItem(keyLoad, 'true')
       user().then(() => {
-        if (data.role === 'p_u_client') {
-          push('/shop')
-        } else {
-          push('/console')
-        }
+        push('/shop')
       })
     }
     setIsLoading(false)
