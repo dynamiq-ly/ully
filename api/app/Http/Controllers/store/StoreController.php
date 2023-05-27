@@ -36,24 +36,16 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         if ($request->hasFile('store_logo')) {
-            $request->file('store_logo')->store('public/store/logo');
+            $request->file('store_logo')->store('public/store');
             $store_logo = $request->file('store_logo')->hashName();
         } else {
             return response()->json(['message' => 'Please upload a store logo'], 400);
-        }
-
-        if ($request->hasFile('store_thumbnail')) {
-            $request->file('store_thumbnail')->store('public/store/thumbnail');
-            $store_thumbnail = $request->file('store_thumbnail')->hashName();
-        } else {
-            return response()->json(['message' => 'Please upload a store thumbnail'], 400);
         }
 
         return Store::create([
             'store_logo' => $store_logo,
             'store_name' => $request->store_name,
             'store_description' => $request->store_description,
-            'store_thumbnail' => $store_thumbnail,
             'store_email' => $request->store_email,
             'store_phone' => $request->store_phone,
             'store_address' => $request->store_address,
@@ -61,8 +53,8 @@ class StoreController extends Controller
             'store_facebook' => $request->store_facebook,
             'store_twitter' => $request->store_twitter,
             'store_whatsapp' => $request->store_whatsapp,
-            'store_status' => $request->store_status,
-            'store_is_featured' => $request->store_is_featured,
+            'store_status' => 1,
+            'store_is_featured' => 0,
             'store_view_count' => 0, // Set initial value to 0
             'user_id' => $request->user_id,
         ]);
@@ -94,13 +86,8 @@ class StoreController extends Controller
         }
 
         if ($request->hasFile('store_logo')) {
-            $request->file('store_logo')->store('public/store/logo');
+            $request->file('store_logo')->store('public/store');
             $store->store_logo = $request->file('store_logo')->hashName();
-        }
-
-        if ($request->hasFile('store_thumbnail')) {
-            $request->file('store_thumbnail')->store('public/store/thumbnail');
-            $store->store_thumbnail = $request->file('store_thumbnail')->hashName();
         }
 
         $store->update($request->only([

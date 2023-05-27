@@ -21,7 +21,6 @@ class Store extends Model
         'store_logo',
         'store_name',
         'store_description',
-        'store_thumbnail',
         'store_email',
         'store_phone',
         'store_address',

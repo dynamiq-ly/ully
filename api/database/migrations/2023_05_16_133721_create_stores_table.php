@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('store_logo');
             $table->string('store_name')->unique();
             $table->string('store_description');
-            $table->string('store_thumbnail')->nullable();
 
             $table->string('store_email');
             $table->string('store_phone');

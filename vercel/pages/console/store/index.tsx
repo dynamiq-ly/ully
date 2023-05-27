@@ -12,7 +12,7 @@ export default function Index() {
   const { data, status } = useQuery(`@store`, () => __.get(`api/users/${currentUser?.id}`).then((res) => res.data), {
     retry: true,
     refetchOnWindowFocus: false,
-    refetchOnMount: false,
+    refetchOnMount: true,
     refetchOnReconnect: false,
   })
 
@@ -25,7 +25,7 @@ export default function Index() {
       {status === 'success' && data.store ? (
         <TableHeader title={'Store'} subTitle={'Dashboard Section.'} search={false} button={{ adder: 'edit', adderPath: `/console/store/${data.store.id}` }} />
       ) : (
-        <TableHeader title={'Store'} subTitle={'Dashboard Section.'} search={false} button={{ adder: 'edit', adderPath: '/console/store/create' }} />
+        <TableHeader title={'Store'} subTitle={'Dashboard Section.'} search={false} button={{ adder: 'create', adderPath: '/console/store/create' }} />
       )}
     </>
   )

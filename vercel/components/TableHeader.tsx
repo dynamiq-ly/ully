@@ -30,7 +30,7 @@ const TableHeader: FC<Props & Record<string, any>> = ({ title, subTitle, search 
       {search && <Input icon={<TbSearch />} placeholder={'Search'} {...rest} />}
       {button && (
         <span>
-          <Button title={button?.adder} bg={'primary'} onClick={() => push(button?.adderPath)} />
+          <Button title={button?.adder} onClick={() => push(button?.adderPath)} />
         </span>
       )}
     </TableHeaderStyle>

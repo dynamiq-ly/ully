@@ -4,6 +4,7 @@ use App\Http\Controllers\product\ProductController;
 use App\Http\Controllers\store\CatalogController;
 use App\Http\Controllers\store\CategoryController;
 use App\Http\Controllers\store\StoreController;
+use App\Http\Controllers\Users\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,4 +52,14 @@ Route::prefix('/store')->group(function () {
     Route::get('/{id}', StoreController::class . '@show');
     Route::patch('/{id}', StoreController::class . '@update');
     Route::delete('/{id}', StoreController::class . '@destroy');
+});
+
+Route::prefix('/users')->group(function () {
+
+    // users
+    Route::get('/', UserController::class . '@index');
+    Route::post('/', UserController::class . '@store');
+    Route::get('/{id}', UserController::class . '@show');
+    Route::patch('/{id}', UserController::class . '@update');
+    Route::delete('/{id}', UserController::class . '@destroy');
 });
