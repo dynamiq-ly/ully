@@ -26,7 +26,7 @@ export default function Index() {
         Header: '',
         accessor: 'store_logo',
         // eslint-disable-next-line @next/next/no-img-element
-        Cell: (props: any) => <Avatar src={`${process.env.APP_SERVER}storage/store/${props.value}`} alt='logo' width={36} height={36} style={{ borderRadius: '100%' }} />,
+        Cell: ({ cell: { value } }: any) => <Avatar src={`${process.env.APP_SERVER}storage/store/${value}`} alt='logo' width={36} height={36} style={{ borderRadius: '100%' }} />,
       },
       { Header: 'Name', accessor: 'store_name' },
       {

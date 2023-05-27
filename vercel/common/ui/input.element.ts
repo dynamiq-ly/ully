@@ -82,3 +82,25 @@ export const ValidationText = styled.span`
     text-transform: uppercase;
   }
 `
+
+// select
+export const SelectWrapper = styled.select`
+  width: 100%;
+  outline: none;
+  overflow: hidden;
+  font-size: ${({ theme }) => theme.spacing(7)};
+
+  height: ${({ theme }) => theme.spacing(19)};
+  max-height: ${({ theme }) => theme.spacing(19)};
+  border-radius: ${({ theme }) => theme.spacing(4)};
+
+  background: ${({ theme }) => theme.colors.white};
+  border: 2px solid ${({ theme }) => theme.colors.f400};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: 450;
+  padding: ${({ theme }) => theme.spacing(0)} ${({ theme }) => theme.spacing(5)};
+`

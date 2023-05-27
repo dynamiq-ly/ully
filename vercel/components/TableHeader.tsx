@@ -27,12 +27,14 @@ const TableHeader: FC<Props & Record<string, any>> = ({ title, subTitle, search 
         <p>{title}</p>
         <p>{subTitle}</p>
       </div>
-      {search && <Input icon={<TbSearch />} placeholder={'Search'} {...rest} />}
-      {button && (
-        <span>
-          <Button title={button?.adder} onClick={() => push(button?.adderPath)} />
-        </span>
-      )}
+      <div style={{ display: 'flex', gap: 5 }}>
+        {search && <Input icon={<TbSearch />} placeholder={'Search'} {...rest} />}
+        {button && (
+          <span>
+            <Button title={button?.adder} onClick={() => push(button?.adderPath)} />
+          </span>
+        )}
+      </div>
     </TableHeaderStyle>
   )
 }

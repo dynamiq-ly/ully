@@ -21,7 +21,7 @@ type Store = {
 }
 
 type Catalog = {
-  id: nunmber
+  id: number
   catalog_name: string
   catalog_image: string
   catalog_type: string
