@@ -29,18 +29,7 @@ const DataTable: FC<Props> = function ({ data, columns }) {
     setPageSize,
     state: { pageIndex, pageSize },
   } = useTable({ columns, data, initialState: { pageIndex: 0 } }, usePagination, (hooks) => {
-    hooks.visibleColumns.push((columns) => [
-      ...columns,
-      {
-        id: 'action',
-        Cell: ({ row }) => (
-          <>
-            <BiEditAlt size={18} style={{ marginLeft: 5, cursor: 'pointer' }} />
-            <BiTrashAlt size={18} style={{ marginLeft: 5, cursor: 'pointer' }} />
-          </>
-        ),
-      },
-    ])
+    hooks.visibleColumns.push((columns) => [...columns])
   })
 
   return (

@@ -87,3 +87,42 @@ export const TableText = styled.div<TableTextProps>`
       padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(5)};
     `}
 `
+
+export const TableAction = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: ${({ theme }) => theme.spacing(2)};
+
+  & > button {
+    display: flex;
+    border: none;
+    outline: none;
+    font-weight: 450;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    text-transform: capitalize;
+    gap: ${({ theme }) => theme.spacing(2.5)};
+    border-radius: ${({ theme }) => theme.spacing(4)};
+    padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(6)};
+
+    &:first-child {
+      color: ${({ theme }) => theme.accents.primary.p700};
+      background: ${({ theme }) => theme.accents.primary.p100};
+
+      &:hover {
+        background: ${({ theme }) => theme.accents.primary.p200};
+      }
+    }
+
+    &:nth-child(2) {
+      color: ${({ theme }) => theme.accents.error.e700};
+      background: ${({ theme }) => theme.accents.error.e100};
+
+      &:hover {
+        background: ${({ theme }) => theme.accents.error.e200};
+      }
+    }
+  }
+`
