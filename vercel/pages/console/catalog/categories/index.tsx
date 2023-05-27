@@ -49,7 +49,7 @@ export default function Index() {
         ),
       },
     ],
-    []
+    [refetch, push]
   )
 
   const filteredData = useMemo(() => {
