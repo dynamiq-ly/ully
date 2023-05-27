@@ -74,6 +74,16 @@ class StoreController extends Controller
         return $store;
     }
 
+    public function find(string $id)
+    {
+        // get store by store_name
+        $store = Store::with('catalogs.categories.products')->find($id);
+        $store->update([
+            'store_view_count' => $store->store_view_count + 1,
+        ]);
+        return $store;
+    }
+
     /**
      * Update the specified resource in storage.
      */
