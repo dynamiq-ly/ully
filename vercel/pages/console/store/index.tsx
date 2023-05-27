@@ -42,8 +42,6 @@ export default function Index() {
     )
   }
 
-  console.log(`${process.env.APP_SERVER}storage/store/${data.store.store_logo}`)
-
   return (
     <>
       <Head>
@@ -52,7 +50,7 @@ export default function Index() {
       </Head>
       {status === 'success' && data.store && (
         <>
-          <TableHeader title={'Store'} subTitle={'Dashboard Section.'} search={false} button={{ adder: 'edit', adderPath: `/console/store/${data.store.id}` }} />
+          <TableHeader title={'Your store'} subTitle={'Dashboard Section.'} search={false} button={{ adder: 'edit', adderPath: `/console/store/${data.store.id}` }} />
           <StoreWrapper style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Avatar
               width={300}

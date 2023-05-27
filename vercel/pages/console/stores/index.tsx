@@ -1,9 +1,10 @@
 import Head from 'next/head'
 
+import { useMemo } from 'react'
 import { __ } from '@/hooks/query'
-import { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { AiOutlineCheckCircle, AiOutlineClose } from 'react-icons/ai'
 
+import Avatar from '@/common/Avatar'
 import DataTable from '@/components/Table'
 import TableHeader from '@/components/TableHeader'
 
@@ -25,7 +26,7 @@ export default function Index() {
         Header: '',
         accessor: 'store_logo',
         // eslint-disable-next-line @next/next/no-img-element
-        Cell: (props: any) => <img src={`${process.env.APP_SERVER}storage/store/logo/${props.value}`} alt='logo' width={36} height={36} style={{ borderRadius: '100%' }} />,
+        Cell: (props: any) => <Avatar src={`${process.env.APP_SERVER}storage/store/${props.value}`} alt='logo' width={36} height={36} style={{ borderRadius: '100%' }} />,
       },
       { Header: 'Name', accessor: 'store_name' },
       {
