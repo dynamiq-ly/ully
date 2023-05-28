@@ -27,8 +27,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         return Category::create([
-            'category_name' => $request->category_name,
-            'catalog_id' => $request->catalog_id
+            'category_name' => $request->input('category_name'),
+            'catalog_id' => $request->input('catalog_id'),
         ]);
     }
 
@@ -47,9 +47,10 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        $category->update($request->only([
-            'category_name' => $request->category_name,
-        ]));
+        $category->update([
+            'category_name' => $request->input('category_name'),
+            'catalog_id' => $request->input('catalog_id'),
+        ]);
 
         return $category;
     }

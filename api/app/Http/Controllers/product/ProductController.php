@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('images')) {
             $product = Product::create($request->only([
                 'product_name',
                 'product_slug',
@@ -65,10 +65,38 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        $product->update($request->only([
+            'product_name',
+            'product_slug',
+            'product_reference',
+            'product_description',
+            'product_details',
+            'product_price',
+            'product_colors',
+            'product_status',
+            'category_id',
+        ]));
+
+        if ($request->hasFile('images')) {
+            // Delete existing images
+            $product->images()->delete();
+
+            // Upload new images
+            foreach ($request->file('images') as $image) {
+                $image->store('public/product/images');
+                $product->images()->create([
+                    'product_image' => $image->hashName(),
+                ]);
+            }
+        }
+
+        return $product;
     }
+
 
     /**
      * Remove the specified resource from storage.

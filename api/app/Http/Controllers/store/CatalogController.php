@@ -65,8 +65,8 @@ class CatalogController extends Controller
         }
 
         $catalog->update($request->only([
-            'catalog_name' => $request->catalog_name,
-            'catalog_type' => $request->catalog_type,
+            'catalog_name',
+            'catalog_type',
         ]));
 
         return $catalog;
