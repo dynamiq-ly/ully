@@ -6,7 +6,6 @@ import { __ } from '@/hooks/query'
 import Head from 'next/head'
 import Input from '@/common/Input'
 import Button from '@/common/Button'
-import Upload from '@/common/Upload'
 import { __auth } from '@/context/AuthProvider'
 import TableHeader from '@/components/TableHeader'
 
