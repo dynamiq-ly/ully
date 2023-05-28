@@ -60,7 +60,7 @@ const ConsoleLayout: FC<Props> = ({ children }) => {
           </CollapsibleContainer>
 
           {currentUser?.role === 'p_u_admin' && (
-            <CollapsibleContainer isOpen={pathname.includes('/users')}>
+            <CollapsibleContainer isOpen={pathname.includes('/users')} onClick={() => push('/console/users')}>
               <TbUsers size={21} /> <p>users</p>
             </CollapsibleContainer>
           )}

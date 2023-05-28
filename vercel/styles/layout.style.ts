@@ -113,6 +113,13 @@ export const StoreLayoutLogo = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing(4)};
+
+  & > p {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: ${({ theme }) => theme.spacing(9)};
+    letter-spacing: -2px;
+  }
 `
 
 export const StoreLayoutActions = styled.div`

@@ -1,7 +1,6 @@
 import Head from 'next/head'
 
 import { __shop } from '@/context/ShopProvider'
-import LinksHeader from '@/components/LinksHeader'
 
 export default function Shop() {
   const { shop } = __shop()
@@ -13,9 +12,11 @@ export default function Shop() {
         <link rel='icon' href='/logo.png' />
       </Head>
 
-      <LinksHeader></LinksHeader>
-
-      {/* <StoreWrapper>{shop?.catalogs.map((catalog: Catalog) => catalog.categories.map((category: Category) => category.products.map((product: Product) => <Product key={product.id} />)))}</StoreWrapper> */}
+      <ul>
+        {shop?.catalogs.map((catalog: Catalog) => (
+          <li key={catalog.id}>{catalog.catalog_name}</li>
+        ))}
+      </ul>
     </>
   )
 }
