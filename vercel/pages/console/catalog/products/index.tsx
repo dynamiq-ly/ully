@@ -11,6 +11,7 @@ import { TableAction, TableText } from '@/shared/table.module'
 import { AiOutlineCheckCircle, AiOutlineClose } from 'react-icons/ai'
 import { BiEditAlt, BiTrashAlt } from 'react-icons/bi'
 import { useRouter } from 'next/router'
+import Avatar from '@/common/Avatar'
 
 export default function Index() {
   const { push } = useRouter()
@@ -25,6 +26,13 @@ export default function Index() {
 
   const columns = useMemo(
     () => [
+      {
+        Header: '',
+        accessor: 'images',
+        Cell: ({ cell: { value } }: any) => (
+          <Avatar src={`${process.env.APP_SERVER}storage/product/images/${value[0].product_image}`} alt='catalog image' width={36} height={36} style={{ borderRadius: '100%' }} />
+        ),
+      },
       { Header: 'Reference', accessor: 'product_reference' },
       { Header: 'Name', accessor: 'product_name' },
       { Header: 'price', accessor: (d: Product) => `${d.product_price} TND` },
